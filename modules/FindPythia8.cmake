@@ -12,9 +12,9 @@
 
 
 find_path(PYTHIA8_INCLUDE_DIR Pythia.h Pythia8/Pythia.h
-          HINTS $ENV{PYTHIA8_ROOT_DIR}/include ${PYTHIA8_ROOT_DIR}/include)
+          HINTS $ENV{PYTHIA8}/include ${PYTHIA8_ROOT_DIR}/include)
 find_path(PYTHIA8_XML_DIR Version.xml
-          HINTS $ENV{PYTHIA8_ROOT_DIR}/xmldoc ${PYTHIA8_ROOT_DIR}/xmldoc $ENV{PYTHIA8_ROOT_DIR}/share/Pythia8/xmldoc ${PYTHIA8_ROOT_DIR}/share/Pythia8/xmldoc)
+          HINTS $ENV{PYTHIA8}/xmldoc ${PYTHIA8_ROOT_DIR}/xmldoc $ENV{PYTHIA8}/share/Pythia8/xmldoc ${PYTHIA8_ROOT_DIR}/share/Pythia8/xmldoc)
 
 message(STATUS "xml path: ${PYTHIA8_XML_DIR}")
 
@@ -25,14 +25,14 @@ string(REGEX REPLACE ".*Pythia:versionNumber.*default.*[0-9][.]([0-9]+).*" "\\1"
 message(STATUS "pythia8 version extracted: ${PYTHIA8_VERSION}")
 
 find_library(PYTHIA8_LIBRARY NAMES pythia8 Pythia8
-             HINTS $ENV{PYTHIA8_ROOT_DIR}/lib ${PYTHIA8_ROOT_DIR}/lib)
+             HINTS $ENV{PYTHIA8}/lib ${PYTHIA8_ROOT_DIR}/lib)
 
 if(PYTHIA8_VERSION VERSION_LESS 200)
   find_library(PYTHIA8_hepmcinterface_LIBRARY NAMES hepmcinterface pythia8tohepmc
-               HINTS $ENV{PYTHIA8_ROOT_DIR}/lib ${PYTHIA8_ROOT_DIR}/lib)
+               HINTS $ENV{PYTHIA8}/lib ${PYTHIA8_ROOT_DIR}/lib)
 
   find_library(PYTHIA8_lhapdfdummy_LIBRARY NAMES lhapdfdummy
-               HINTS $ENV{PYTHIA8_ROOT_DIR}/lib ${PYTHIA8_ROOT_DIR}/lib)
+               HINTS $ENV{PYTHIA8}/lib ${PYTHIA8_ROOT_DIR}/lib)
 
   set(PYTHIA8_LIBRARIES ${PYTHIA8_LIBRARY} ${PYTHIA8_hepmcinterface_LIBRARY} ${PYTHIA8_lhapdfdummy_LIBRARY})
 else()
